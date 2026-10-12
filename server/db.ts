@@ -663,7 +663,7 @@ class RaffleDatabase {
     };
   }
 
-  public adminUpdateNumberStatus(numero: string, action: 'liberar' | 'marcar_pagado' | 'cancelar_venta' | 'bloquear' | 'desbloquear', adminBuyerInfo?: {
+  public adminUpdateNumberStatus(numero: string, action: 'liberar' | 'marcar_pagado' | 'cancelar_venta' | 'borrar' | 'bloquear' | 'desbloquear', adminBuyerInfo?: {
     nombre: string;
     documento: string;
     telefono: string;
@@ -702,8 +702,9 @@ class RaffleDatabase {
       return { success: true, message: `Número ${numero} desbloqueado.`, number: item };
     }
 
-    if (action === 'cancelar_venta') {
+    if (action === 'cancelar_venta' || action === 'borrar') {
       const prevOrderId = item.order_id;
+      const prevBuyerId = item.buyer_id;
       item.estado = 'disponible';
       item.is_locked = false;
       item.buyer_id = null;
@@ -714,6 +715,8 @@ class RaffleDatabase {
       item.reservation_id = null;
       item.reserved_by_session = null;
       item.reserved_at = null;
+      delete (item as any).buyer;
+      delete (item as any).order;
 
       if (prevOrderId && this.state.orders[prevOrderId]) {
         this.state.orders[prevOrderId].numbers = this.state.orders[prevOrderId].numbers.filter((n) => n !== numero);
@@ -722,10 +725,21 @@ class RaffleDatabase {
         }
       }
 
+      if (prevBuyerId) {
+        const stillHasNumbers = Object.values(this.state.numbers).some((n) => n.buyer_id === prevBuyerId);
+        if (!stillHasNumbers && this.state.buyers[prevBuyerId]) {
+          delete this.state.buyers[prevBuyerId];
+        }
+      }
+
       this.saveState();
       sseManager.broadcast('numbers:released', { numbers: [numero] });
       sseManager.broadcast('stats:updated', this.getStats());
-      return { success: true, message: `Venta del número ${numero} cancelada y vuelto a disponible.`, number: item };
+      return {
+        success: true,
+        message: `Ticket #${numero}: datos de comprador, RUT, contacto, fecha y monto borrados con éxito. Estado modificado a disponible.`,
+        number: item,
+      };
     }
 
     if (action === 'marcar_pagado') {

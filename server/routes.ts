@@ -306,7 +306,7 @@ apiRouter.post('/admin/numbers/:numero/status', (req: Request, res: Response) =>
   const { numero } = req.params;
   const { action, buyerInfo } = req.body;
 
-  if (!['liberar', 'marcar_pagado', 'cancelar_venta', 'bloquear', 'desbloquear'].includes(action)) {
+  if (!['liberar', 'marcar_pagado', 'cancelar_venta', 'borrar', 'bloquear', 'desbloquear'].includes(action)) {
     return res.status(400).json({ error: 'Acción inválida' });
   }
 

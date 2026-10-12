@@ -8,7 +8,7 @@
     "imagen": "/src/assets/images/raffle_hero_prize_1791477047971.jpg",
     "imagenDetalle": "/src/assets/images/raffle_prize_detail_1791477059727.jpg",
     "precio_numero": 2000,
-    "fecha_sorteo": "2026-10-22T16:42:08.805Z",
+    "fecha_sorteo": "2026-11-01T23:00:00.000Z",
     "estado": "activa",
     "totalNumeros": 500,
     "metaRecaudacion": 1000000,
@@ -2176,25 +2176,42 @@
     "001": {
       "id": 1,
       "numero": "001",
-      "estado": "pagado",
+      "estado": "disponible",
       "reservation_id": null,
       "reserved_by_session": null,
       "reserved_at": null,
-      "buyer_id": "buyer-1791738117503-t1q9",
-      "buyer_nombre": "Test Comprador Flow",
-      "order_id": "ORD-117503",
-      "payment_id": "PAY-117503",
-      "paid_at": "2026-10-11T17:01:57.503Z"
+      "buyer_id": null,
+      "buyer_nombre": null,
+      "order_id": null,
+      "payment_id": null,
+      "paid_at": null,
+      "is_locked": false
     },
     "002": {
       "id": 2,
       "numero": "002",
-      "estado": "disponible"
+      "estado": "pagado",
+      "reservation_id": null,
+      "reserved_by_session": null,
+      "reserved_at": null,
+      "buyer_id": "buyer-1791731987063-nn65",
+      "buyer_nombre": "william aranda",
+      "order_id": "ORD-092759",
+      "payment_id": "PAY-092759",
+      "paid_at": "2026-10-12T14:41:32.759Z",
+      "is_locked": false
     },
     "003": {
       "id": 3,
       "numero": "003",
-      "estado": "disponible"
+      "estado": "pagado",
+      "is_locked": true,
+      "buyer_id": "buyer-admin-1791817017801",
+      "buyer_nombre": "Comprador Presencial",
+      "order_id": "ORD-MAN-017801",
+      "paid_at": "2026-10-12T14:56:57.801Z",
+      "reservation_id": null,
+      "reserved_by_session": null
     },
     "004": {
       "id": 4,
@@ -2834,16 +2851,16 @@
       "nombre": "william aranda",
       "documento": "17.003.766-9",
       "telefono": "+56934696074",
-      "email": "kognitiastudioia@gmail.com",
+      "email": "vivirstudioscorp@gmail.com",
       "created_at": "2026-10-11T15:19:47.063Z"
     },
-    "buyer-1791738117503-t1q9": {
-      "id": "buyer-1791738117503-t1q9",
-      "nombre": "Test Comprador Flow",
-      "documento": "19.876.543-2",
-      "telefono": "+56912345678",
-      "email": "juan@outlook.com",
-      "created_at": "2026-10-11T17:01:57.503Z"
+    "buyer-admin-1791817017801": {
+      "id": "buyer-admin-1791817017801",
+      "nombre": "Comprador Presencial",
+      "documento": "11.111.111-1",
+      "telefono": "+56 9 0000 0000",
+      "email": "presencial@gransorteo.cl",
+      "created_at": "2026-10-12T14:56:57.801Z"
     }
   },
   "reservations": {
@@ -2994,6 +3011,16 @@
       "expires_at": "2026-10-11T17:11:57.486Z",
       "status": "completed",
       "created_at": "2026-10-11T17:01:57.486Z"
+    },
+    "res-1791815822547-865jj": {
+      "id": "res-1791815822547-865jj",
+      "session_id": "sess_1791771455549_ddjca6v",
+      "numbers": [
+        "002"
+      ],
+      "expires_at": "2026-10-12T14:47:02.547Z",
+      "status": "completed",
+      "created_at": "2026-10-12T14:37:02.547Z"
     }
   },
   "orders": {
@@ -3178,14 +3205,58 @@
       "buyer_documento": "19.876.543-2",
       "buyer_telefono": "+56912345678",
       "buyer_email": "juan@outlook.com",
+      "numbers": [],
+      "total": 2000,
+      "status": "cancelled",
+      "payment_provider": "flow",
+      "transaction_id": "FLOW-1791738117503-8127",
+      "created_at": "2026-10-11T17:01:57.503Z"
+    },
+    "ORD-092759": {
+      "id": "ORD-092759",
+      "buyer_id": "buyer-1791731987063-nn65",
+      "buyer_nombre": "william aranda",
+      "buyer_documento": "17.003.766-9",
+      "buyer_telefono": "+56934696074",
+      "buyer_email": "vivirstudioscorp@gmail.com",
       "numbers": [
-        "001"
+        "002"
       ],
       "total": 2000,
       "status": "paid",
       "payment_provider": "flow",
-      "transaction_id": "FLOW-1791738117503-8127",
-      "created_at": "2026-10-11T17:01:57.503Z"
+      "transaction_id": "FLOW-1791816092759-5836",
+      "created_at": "2026-10-12T14:41:32.759Z"
+    },
+    "ORD-MAN-017801": {
+      "id": "ORD-MAN-017801",
+      "buyer_id": "buyer-admin-1791817017801",
+      "buyer_nombre": "Comprador Presencial",
+      "buyer_documento": "11.111.111-1",
+      "buyer_telefono": "+56 9 0000 0000",
+      "buyer_email": "presencial@gransorteo.cl",
+      "numbers": [
+        "003"
+      ],
+      "total": 2000,
+      "status": "paid",
+      "payment_provider": "transferencia",
+      "transaction_id": "ADMIN-CONFIRM-1791817017801",
+      "created_at": "2026-10-12T14:56:57.801Z"
+    },
+    "ORD-MAN-219522": {
+      "id": "ORD-MAN-219522",
+      "buyer_id": "buyer-admin-1791818219522",
+      "buyer_nombre": "Juan Pérez",
+      "buyer_documento": "12.345.678-9",
+      "buyer_telefono": "+56912345678",
+      "buyer_email": "juan@test.cl",
+      "numbers": [],
+      "total": 2000,
+      "status": "cancelled",
+      "payment_provider": "transferencia",
+      "transaction_id": "ADMIN-CONFIRM-1791818219522",
+      "created_at": "2026-10-12T15:16:59.522Z"
     }
   },
   "payments": {
@@ -3287,6 +3358,15 @@
       "amount": 2000,
       "status": "approved",
       "paid_at": "2026-10-11T17:01:57.503Z"
+    },
+    "PAY-092759": {
+      "id": "PAY-092759",
+      "order_id": "ORD-092759",
+      "payment_provider": "flow",
+      "transaction_id": "FLOW-1791816092759-5836",
+      "amount": 2000,
+      "status": "approved",
+      "paid_at": "2026-10-12T14:41:32.759Z"
     }
   }
 }

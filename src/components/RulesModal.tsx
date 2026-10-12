@@ -1,7 +1,7 @@
 import React from 'react';
 import { X, ShieldCheck, Scale, Award, FileText } from 'lucide-react';
 import type { RaffleInfo } from '../types';
-import { formatCLP } from '../utils/format';
+import { formatCLP, formatDate } from '../utils/format';
 
 interface RulesModalProps {
   isOpen: boolean;
@@ -79,7 +79,7 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose, raffle 
                 4. Fecha y Realización del Sorteo
               </h4>
               <p className="text-slate-400">
-                El sorteo se llevará a cabo una vez completada la venta de los 500 números o al cumplirse la fecha límite estipulada ({raffle?.fecha_sorteo ? '25 de Octubre 2026' : 'fecha programada'}). Se transmitirá en directo por redes sociales y los resultados se publicarán de inmediato en esta plataforma.
+                El sorteo se llevará a cabo una vez completada la venta de los 500 números o al cumplirse la fecha límite estipulada ({raffle?.fecha_sorteo ? formatDate(raffle.fecha_sorteo) : 'fecha programada en administración'}). Se transmitirá en directo por redes sociales y los resultados se publicarán de inmediato en esta plataforma.
               </p>
             </div>
 
